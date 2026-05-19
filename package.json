@@ -9,6 +9,7 @@
   },
   "scripts": {
     "day-01": "tsx src/day-01-chatbot/index.ts",
+    "day-02": "tsx src/day-02-structured-outputs/index.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\""

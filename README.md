@@ -61,6 +61,45 @@ Type `:exit` or Ctrl+C to quit.
 
 ---
 
+## Day 2 — Structured outputs
+
+Extract typed objects from messy free text using `generateObject` + Zod schemas. Three real extractors:
+
+- `support-ticket` — triage a customer message (category, priority, sentiment, PII, next action)
+- `invoice` — parse an invoice into normalized line items, dates (ISO), and currency (ISO 4217)
+- `resume` — extract a candidate profile (skills, work history, education, primary role)
+
+```bash
+# Run any extractor against its built-in sample
+npm run day-02 -- support-ticket --sample
+npm run day-02 -- invoice --sample
+npm run day-02 -- resume --sample
+
+# Stream the object as it's being generated (watch fields appear)
+npm run day-02 -- invoice --sample --stream
+
+# Use your own text from a file
+npm run day-02 -- resume --file ./my-resume.txt
+
+# Or pipe from stdin
+cat ticket.txt | npm run day-02 -- support-ticket
+
+# List all extractors
+npm run day-02 -- --help
+```
+
+### What you'll learn on Day 2
+
+- `generateObject` vs `streamObject` (single-shot vs progressive)
+- Schema-constrained generation: the model **cannot** return invalid shape
+- Designing Zod schemas with `.describe()` to guide the model
+- Enum-based classification (single-step labelling)
+- Date and currency normalization at the schema layer
+- When to use `mode: "tool"` vs `mode: "json"` vs `auto`
+- Why structured outputs are the #1 pattern in production AI Engineering
+
+---
+
 ## Project layout
 
 ```
@@ -86,7 +125,7 @@ Type `:exit` or Ctrl+C to quit.
 ## Progress tracker
 
 - [x] Day 1 — Streaming chatbot with tool calling ✅ shipped
-- [ ] Day 2 — Structured outputs (Zod schemas + `generateObject`)
+- [x] Day 2 — Structured outputs (3 extractors + streaming) ✅ shipped
 - [ ] Day 3 — Embeddings & semantic search
 - [ ] Day 4 — RAG v1 (in-memory)
 - [ ] Day 5 — RAG v2 (`pgvector` + reranking)
